@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  postgres-account:
+    image: postgres:15-alpine
+    container_name: postgres-account
+    environment:
+      POSTGRES_DB: accountdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_account_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d accountdb" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  postgres-customer:
+    image: postgres:15-alpine
+    container_name: postgres-customer
+    environment:
+      POSTGRES_DB: customerdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5543:5432"
+    volumes:
+      - postgres_customer_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d customerdb" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  postgres-transaction:           # Name of the service in Docker Compose
+    image: postgres:15-alpine     # Uses PostgreSQL 15 with Alpine Linux (lightweight)
+    container_name: postgres-transaction  # Name of the container
+    environment:                  # Database configuration
+      POSTGRES_DB: transactiondb    # Creates a database named 'transaction_service'
+      POSTGRES_USER: postgres     # Creates a user 'transaction_user'
+      POSTGRES_PASSWORD: postgres  # Password for the user
+    ports:
+    - "5435:5432"               # Maps host port 5434 to container port 5432
+    volumes:
+    - postgres_transaction_data:/var/lib/postgresql/data  # Persistent storage
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d transactiondb" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+volumes:
+    postgres_account_data:
+    postgres_customer_data:
+    postgres_transaction_data:

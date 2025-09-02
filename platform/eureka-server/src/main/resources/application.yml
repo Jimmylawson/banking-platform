@@ -1,0 +1,9 @@
+spring:
+  application:
+    name:
+      eureka-server
+
+eureka:
+  client:
+    register-with-eureka: false #the server does not register itself
+    fetch-registry: false
