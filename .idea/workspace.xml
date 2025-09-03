@@ -5,14 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac555f8f-a734-4c96-82f3-391b6b310cda" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/192a101e-c6db-498d-b0a2-303d1059532a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/192a101e-c6db-498d-b0a2-303d1059532a.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/192a101e-c6db-498d-b0a2-303d1059532a/storage_v2/_src_/database/customerdb.3AzBoQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/192a101e-c6db-498d-b0a2-303d1059532a/storage_v2/_src_/database/customerdb.3AzBoQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/204d587c-5339-48ca-b2b8-c550fefd776f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/204d587c-5339-48ca-b2b8-c550fefd776f.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/204d587c-5339-48ca-b2b8-c550fefd776f/storage_v2/_src_/database/transactiondb.3J-3Gg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/204d587c-5339-48ca-b2b8-c550fefd776f/storage_v2/_src_/database/transactiondb.3J-3Gg/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e8f4382c-7780-4ead-9946-953012c1cec7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e8f4382c-7780-4ead-9946-953012c1cec7.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e8f4382c-7780-4ead-9946-953012c1cec7/storage_v2/_src_/database/accountdb.a78Zkw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e8f4382c-7780-4ead-9946-953012c1cec7/storage_v2/_src_/database/accountdb.a78Zkw/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/platform/api-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/api-gateway/src/main/java/com/jimmyproject/apigateway/ApiGatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform/api-gateway/src/main/java/com/jimmyproject/apigateway/ApiGatewayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/platform/api-gateway/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/platform/eureka-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/platform/eureka-server/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/account-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/account-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/account-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/account-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/customer-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/customer-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/customer-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/customer-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/transaction-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/transaction-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/transaction-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/transaction-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/account-service/src/main/java/com/jimmyproject/accountservice/dtos/AccountRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/account-service/src/main/java/com/jimmyproject/accountservice/dtos/AccountRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/account-service/src/main/java/com/jimmyproject/accountservice/web/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/account-service/src/main/java/com/jimmyproject/accountservice/web/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/customer-service/src/main/java/com/jimmyproject/customerservice/dtos/customerRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/customer-service/src/main/java/com/jimmyproject/customerservice/dtos/customerRequestDto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +54,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.AccountServiceApplication.executor": "Run",
+    "Spring Boot.ApiGatewayApplication.executor": "Run",
     "Spring Boot.ConfigServerApplication.executor": "Run",
     "Spring Boot.CustomerServiceApplication.executor": "Run",
     "Spring Boot.EurekaServerApplication.executor": "Run",
@@ -67,7 +75,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="Spring Boot.AccountServiceApplication">
+  <component name="RunManager" selected="Spring Boot.CustomerServiceApplication">
     <configuration name="AccountServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="account-service" />
@@ -128,7 +136,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1756706974938</updated>
-      <workItem from="1756706976758" duration="39045000" />
+      <workItem from="1756706976758" duration="56554000" />
     </task>
     <servers />
   </component>

@@ -25,9 +25,6 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AccountRequestDto {
-    
-    private Long id;
-    
     @NotBlank(message = "Account number is required")
     @Pattern(regexp = "^[0-9]{10,20}$", message = "Account number must be 10-20 digits")
     private String accountNumber;

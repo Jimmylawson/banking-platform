@@ -12,13 +12,15 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 public class customerRequestDto {
-    private Long id;
     @NotBlank(message = "Customer name is required")
     private String customerName;
     @NotBlank(message = "Email is required")
     @Email(message = "Email should be valid")
     private String email;
     @NotBlank(message = "Phone number is required")
-    @Pattern(regexp = "^\\+?[0-9\\s-]{10,20}$", message = "Phone number should be valid")
+    @Pattern(regexp = "^[0-9]{10,15}$", message = "Phone number must be 10-15 digits")
     private String phoneNumber;
+    @NotBlank(message = "Address is required")
+    private String address;
+
 }
