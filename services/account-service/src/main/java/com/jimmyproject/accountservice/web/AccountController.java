@@ -1,7 +1,9 @@
 package com.jimmyproject.accountservice.web;
 
+import com.jimmyproject.accountservice.dtos.AccountCustomerResponse;
 import com.jimmyproject.accountservice.dtos.AccountRequestDto;
 import com.jimmyproject.accountservice.dtos.AccountResponseDto;
+import com.jimmyproject.accountservice.dtos.CustomerResponseDto;
 import com.jimmyproject.accountservice.enums.AccountStatus;
 import com.jimmyproject.accountservice.service.AccountService;
 import jakarta.validation.Valid;
@@ -34,6 +36,17 @@ public class AccountController {
     public ResponseEntity<List<AccountResponseDto>> getAllAccounts(Pageable pageable) {
         return ResponseEntity.ok(accountService.getAllAccounts());
     }
+
+    @GetMapping("/{accountId}/customer")
+    public ResponseEntity<CustomerResponseDto> getAccountWithCustomerWIthId(@PathVariable Long accountId) {
+        return ResponseEntity.ok(accountService.getAccountWithCustomer(accountId));
+    }
+
+    @GetMapping("/{accountId}/customer-account")
+    public ResponseEntity<AccountCustomerResponse> getAccountWithCustomerAndAccount(@PathVariable Long accountId) {
+        return ResponseEntity.ok(accountService.getAccountWithCustomerAndAccount(accountId));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAccount(@PathVariable Long id) {
         accountService.deleteAccount(id);

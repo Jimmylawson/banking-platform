@@ -1,13 +1,17 @@
 package com.jimmyproject.accountservice.service;
 
+import com.jimmyproject.accountservice.dtos.AccountCustomerResponse;
 import com.jimmyproject.accountservice.dtos.AccountRequestDto;
 import com.jimmyproject.accountservice.dtos.AccountResponseDto;
+import com.jimmyproject.accountservice.dtos.CustomerResponseDto;
 import com.jimmyproject.accountservice.entity.Account;
 import com.jimmyproject.accountservice.enums.AccountStatus;
 import com.jimmyproject.accountservice.exceptions.InsufficientFundsException;
 import com.jimmyproject.accountservice.exceptions.ResourceNotFoundException;
 import com.jimmyproject.accountservice.mapper.AccountMapper;
 import com.jimmyproject.accountservice.repository.AccountRepository;
+import com.jimmyproject.accountservice.web.CustomerClient;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -27,6 +31,7 @@ public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository accountRepository;
     private final AccountMapper accountMapper;
+    private final CustomerClient customerClient;
 
     @Override
     @Transactional
@@ -84,6 +89,33 @@ public class AccountServiceImpl implements AccountService {
         }
         accountRepository.deleteById(id);
         log.info("Deleted account with ID: {}", id);
+    }
+
+
+    @Override
+    @CircuitBreaker(name="customerService",fallbackMethod = "getAccountWithCustomerFallback")
+    public CustomerResponseDto getAccountWithCustomer(Long id) {
+        log.info("Fetched customer with id {}", id);
+        var account = findAccountOrThrow(id);
+        var customerId = account.getCustomerId();
+        log.info("Fetching customer with id {}", customerId);
+        return customerClient.getCustomerById(customerId);
+
+    }
+    private String getAccountWithCustomerFallback(Long id,Throwable t) {
+        log.error("Failed to fetch customer with id {}", id, t);
+        return String.format("Service Unavailable for customer with id {}",id);
+    }
+    @Override
+    @CircuitBreaker(name="customerService",fallbackMethod = "getAccountById")
+    public AccountCustomerResponse getAccountWithCustomerAndAccount(Long id) {
+
+        Account account = findAccountOrThrow(id);
+        CustomerResponseDto customer = getAccountWithCustomer(id);
+        return AccountCustomerResponse.builder()
+                .account(accountMapper.toResponseDto(account))
+                .customer(customer)
+                .build();
     }
 
     @Override

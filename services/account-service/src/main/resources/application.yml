@@ -8,6 +8,17 @@ spring:
     import: "optional:configserver:http://localhost:8071"
     fail-fast: true
 
+  resilience4j:
+    circuitbreaker:
+      instances:
+        customerService: # Name of the circuit breaker instance (matches @CircuitBreaker name)
+          registerHealthIndicator: true  # Exposes circuit breaker state via /actuator/health
+          slidingWindowSize: 10         # Number of calls to track in the sliding window
+          failureRateThreshold: 50      # Percentage of failures to trigger the circuit to open
+          waitDurationInOpenState: 5s   # How long to stay open before trying again
+
+
+
   eureka:
     client:
       register-with-eureka: true

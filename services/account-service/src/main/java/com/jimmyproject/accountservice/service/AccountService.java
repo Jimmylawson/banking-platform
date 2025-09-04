@@ -1,7 +1,9 @@
 package com.jimmyproject.accountservice.service;
 
+import com.jimmyproject.accountservice.dtos.AccountCustomerResponse;
 import com.jimmyproject.accountservice.dtos.AccountRequestDto;
 import com.jimmyproject.accountservice.dtos.AccountResponseDto;
+import com.jimmyproject.accountservice.dtos.CustomerResponseDto;
 import com.jimmyproject.accountservice.enums.AccountStatus;
 
 import java.math.BigDecimal;
@@ -28,7 +30,8 @@ public interface AccountService {
      * @throws com.jimmyproject.accountservice.exceptions.ResourceNotFoundException if account not found
      */
     AccountResponseDto getAccountById(Long id);
-
+    CustomerResponseDto getAccountWithCustomer(Long id);
+    AccountCustomerResponse getAccountWithCustomerAndAccount(Long id);
     /**
      * Get all accounts.
      *
