@@ -12,5 +12,22 @@ eureka:
   client:
     register-with-eureka: false #the server does not register itself
     fetch-registry: false
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoint:
+    prometheus:
+      enabled: true
+    health:
+      show-details: always
+
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+      base-path: /actuator
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+    tags:
+      application: ${spring.application.name}

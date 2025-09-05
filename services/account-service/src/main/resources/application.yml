@@ -1,5 +1,6 @@
 server:
   port: 8081
+
 spring:
   application:
     name: account-service
@@ -10,14 +11,26 @@ spring:
 
   resilience4j:
     circuitbreaker:
+      configs:
+        default:
+          registerHealthIndicator: true
+          slidingWindowType: COUNT_BASED      # or TIME_BASED
+          slidingWindowSize: 4               # look at last 10 calls
+          minimumNumberOfCalls: 4            # don’t evaluate before this many
+          failureRateThreshold: 50            # >=50% failures -> OPEN
+          slowCallDurationThreshold: 2s       # calls slower than this are "slow"
+          slowCallRateThreshold: 60           # >=60% slow calls -> OPEN
+          waitDurationInOpenState: 10s        # stay OPEN before trying again
+          permittedNumberOfCallsInHalfOpenState: 2
+          automaticTransitionFromOpenToHalfOpenEnabled: true
+          recordExceptions:
+            - feign.RetryableException
+            - feign.FeignException
+            - java.net.SocketTimeoutException
+            - java.io.IOException
       instances:
-        customerService: # Name of the circuit breaker instance (matches @CircuitBreaker name)
-          registerHealthIndicator: true  # Exposes circuit breaker state via /actuator/health
-          slidingWindowSize: 10         # Number of calls to track in the sliding window
-          failureRateThreshold: 50      # Percentage of failures to trigger the circuit to open
-          waitDurationInOpenState: 5s   # How long to stay open before trying again
-
-
+        customerService:
+          baseConfig: default
 
   eureka:
     client:
@@ -26,9 +39,31 @@ spring:
       service-url:
         defaultZone: http://localhost:8761/eureka/
 
-  management:
-    endpoints:
-      web:
-        exposure:
-          include: health,info,refresh
+management:
+  endpoint:
+    prometheus:
+      enabled: true
+    metrics:
+      tags:
+        application: ${spring.application.name}
+    health:
+      show-details: always
+      show-components: always
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: health,prometheus,info,metrics,circuitbreakers,circuitbreakerevents
+  health:
+    circuitbreakers:
+      enabled: true
+    defaults:
+      show-details: always
 
+#logging:
+#  level:
+#    org.springframework.boot.actuate: DEBUG
+#    org.springframework.cloud: DEBUG
+#    org.springframework.web: DEBUG
+#    com.jimmyproject: DEBUG
+#    io.github.resilience4j: DEBUG

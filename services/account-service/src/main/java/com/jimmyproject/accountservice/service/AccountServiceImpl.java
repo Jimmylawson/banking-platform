@@ -93,21 +93,26 @@ public class AccountServiceImpl implements AccountService {
 
 
     @Override
-    @CircuitBreaker(name="customerService",fallbackMethod = "getAccountWithCustomerFallback")
+    @CircuitBreaker(name="customerService", fallbackMethod = "getAccountWithCustomerFallback")
     public CustomerResponseDto getAccountWithCustomer(Long id) {
         log.info("Fetched customer with id {}", id);
         var account = findAccountOrThrow(id);
+        // Let the exception propagate to the circuit breaker
         var customerId = account.getCustomerId();
         log.info("Fetching customer with id {}", customerId);
         return customerClient.getCustomerById(customerId);
-
     }
-    private String getAccountWithCustomerFallback(Long id,Throwable t) {
-        log.error("Failed to fetch customer with id {}", id, t);
-        return String.format("Service Unavailable for customer with id {}",id);
+    private CustomerResponseDto getAccountWithCustomerFallback(Long id, Throwable t) {
+        log.warn("Using fallback for customer with id: {}", id, t);
+        return CustomerResponseDto.builder()
+                .customerName("Service Unavailable")
+                .phoneNumber("212-555-1212")
+                .email("unavailable@example.com")
+                .address("123 Main St")
+                .build();
     }
     @Override
-    @CircuitBreaker(name="customerService",fallbackMethod = "getAccountById")
+    @CircuitBreaker(name="customerService",fallbackMethod = "getAccountWithCustomerAndAccountFallback")
     public AccountCustomerResponse getAccountWithCustomerAndAccount(Long id) {
 
         Account account = findAccountOrThrow(id);
@@ -115,6 +120,19 @@ public class AccountServiceImpl implements AccountService {
         return AccountCustomerResponse.builder()
                 .account(accountMapper.toResponseDto(account))
                 .customer(customer)
+                .build();
+    }
+    private AccountCustomerResponse getAccountWithCustomerAndAccountFallback(Long id, Throwable t) {
+        // still return the account if we can; if account is missing, let that exception bubble
+        Account account = findAccountOrThrow(id);
+        return AccountCustomerResponse.builder()
+                .account(accountMapper.toResponseDto(account))
+                .customer(CustomerResponseDto.builder()
+                        .customerName("Customer Service Unavailable")
+                        .email(null)
+                        .phoneNumber(null)
+                        .address(null)
+                        .build())
                 .build();
     }
 
