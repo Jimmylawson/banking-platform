@@ -32,6 +32,19 @@ spring:
         customerService:
           baseConfig: default
 
+  cloud:
+    function:
+      definition: handleCustomerCreated  # Matches your @Bean method name
+    stream:
+      bindings:
+        handleCustomerCreated-in-0:  # Matches the function name + -in-0
+          destination: customer.events  # Kafka topic to listen to
+          group: account-service-group  # Consumer group
+      kafka:
+        binder:
+          brokers: localhost:9092  # Kafka broker address
+
+
   eureka:
     client:
       register-with-eureka: true

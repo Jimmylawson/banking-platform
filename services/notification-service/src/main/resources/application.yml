@@ -1,0 +1,22 @@
+server:
+  port : 8084
+spring:
+  application:
+    name:
+      notification-service
+  spring:
+    application:
+      name: notification-service
+    cloud:
+      function:
+        definition: handleCustomerCreated
+      stream:
+        bindings:
+          handleCustomerCreated-in-0:
+            destination: customer.events
+            group: notification-service-group
+        kafka:
+          binder:
+            brokers: localhost:9092
+
+

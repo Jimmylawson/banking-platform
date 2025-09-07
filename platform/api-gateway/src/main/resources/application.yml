@@ -4,6 +4,12 @@ server:
 spring:
   application:
     name: api-gateway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8085/realms/master
+
   cloud:
     gateway:
       server:
@@ -28,7 +34,7 @@ spring:
               predicates:
                 - Path=/api/transactions/**
 #              filters:
-#                - StripPrefix=1
+#                - StripPrefix=
 
 eureka:
   client:

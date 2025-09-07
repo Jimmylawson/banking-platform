@@ -2,6 +2,7 @@ package com.jimmyproject.customerservice.service;
 
 import com.jimmyproject.customerservice.dto.CustomerRequestDto;
 import com.jimmyproject.customerservice.dto.CustomerResponseDto;
+import com.jimmyproject.customerservice.dtos.CustomerCreatedEvent;
 import com.jimmyproject.customerservice.entity.Customer;
 import com.jimmyproject.customerservice.enums.CustomerStatus;
 import com.jimmyproject.customerservice.exceptions.ResourceNotFoundException;
@@ -10,9 +11,11 @@ import com.jimmyproject.customerservice.repository.CustomerRepository;
 import com.jimmyproject.customerservice.service.CustomerServiceInterface;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +30,7 @@ public class CustomerServiceImpl implements CustomerServiceInterface {
 
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
+    private final StreamBridge streamBridge;
 
     @Override
     @Transactional
@@ -45,6 +49,17 @@ public class CustomerServiceImpl implements CustomerServiceInterface {
         
         Customer customer = customerMapper.toEntity(requestDto);
         Customer savedCustomer = customerRepository.save(customer);
+        //Publish event
+        var event = new CustomerCreatedEvent(
+                "customer_created",
+                savedCustomer.getId(),
+                savedCustomer.getEmail(),
+                Instant.now()
+        );
+
+        //Send to kafka
+        streamBridge.send("customer-created-out-0", event);
+
         log.info("Created customer with ID: {}", savedCustomer.getId());
         
         return customerMapper.toResponseDto(savedCustomer);

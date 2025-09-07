@@ -14,6 +14,16 @@ eureka:                      # <-- top-level (not under spring)
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
+cloud:
+  stream:
+    default:
+      contentType: application/json
+      bindings:
+        customer-created-out-0:  # Note: Changed to match your code (with hyphens)
+          destination: customer.events  # Kafka topic
+    kafka:
+      binder:
+        brokers: localhost:9092  # Added space after colon
 
 management:                  # <-- top-level (not under spring)
   endpoints:

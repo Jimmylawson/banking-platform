@@ -5,18 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac555f8f-a734-4c96-82f3-391b6b310cda" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/eureka-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/platform/eureka-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platform/eureka-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/platform/eureka-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/platform/api-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/platform/api-gateway/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/account-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/account-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/account-service/src/main/java/com/jimmyproject/accountservice/service/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/account-service/src/main/java/com/jimmyproject/accountservice/service/AccountServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/account-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/account-service/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/customer-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/customer-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/customer-service/src/main/java/com/jimmyproject/customerservice/service/CustomerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/customer-service/src/main/java/com/jimmyproject/customerservice/service/CustomerServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/customer-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/customer-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/transaction-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/transaction-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/transaction-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/transaction-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +22,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Record" />
         <option value="Class" />
       </list>
     </option>
@@ -84,7 +81,7 @@
       <recent name="$PROJECT_DIR$/platform" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.CustomerServiceApplication">
+  <component name="RunManager" selected="Spring Boot.ApiGatewayApplication">
     <configuration name="AccountServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="account-service" />
@@ -147,7 +144,8 @@
       <updated>1756706974938</updated>
       <workItem from="1756706976758" duration="73468000" />
       <workItem from="1756995837087" duration="70000" />
-      <workItem from="1756995960726" duration="14158000" />
+      <workItem from="1756995960726" duration="18466000" />
+      <workItem from="1757085330589" duration="19803000" />
     </task>
     <servers />
   </component>
