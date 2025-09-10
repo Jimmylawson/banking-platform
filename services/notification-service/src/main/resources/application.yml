@@ -18,5 +18,12 @@ spring:
         kafka:
           binder:
             brokers: localhost:9092
+sendgrid:
+  api:
+    key: ${SENDGRID_API_KEY:}
+  sender:
+    email: ${SENDGRID_SENDER_EMAIL:}
+  name: Malicia Notifications
+
 
 

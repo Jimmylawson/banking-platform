@@ -7,16 +7,26 @@ import com.sendgrid.SendGrid;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class EmailService {
+    @Value("${sendgrid.api.key}")
     private String sendGridApiKey;
+    @Value("${sendgrid.sender.email}")
     private String senderEmail;
+
+    @PostConstruct
+    public void init(){
+        log.info("SendGrid API Key configured: {}", sendGridApiKey != null ? "Yes" : "No");
+        log.info("SendGrid Sender Email configured: {}", senderEmail != null ? "Yes" : "No");
+    }
 
     public void sendWelcomeEmail(String toEmail, String firstName){
         Email from  = new Email(senderEmail);
@@ -54,6 +64,10 @@ public class EmailService {
         }catch (Exception e){
             log.error("Error sending email to {}", toEmail,e);
         }
+    }
+
+    public String getSenderEmail() {
+        return senderEmail;
     }
 
 }

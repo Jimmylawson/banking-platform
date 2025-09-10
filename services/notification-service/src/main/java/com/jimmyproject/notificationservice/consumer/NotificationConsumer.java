@@ -16,19 +16,23 @@ import java.util.function.Consumer;
 public class NotificationConsumer {
     private final EmailService emailService;
 
-    @Bean
+
     public Consumer<CustomerCreatedEvent> handleCustomerCreated(){
-        return event ->{
+        return event -> {
             log.info("Received customer created event for: {}", event.email());
 
-            try{
+            try {
+                // Extract the first name from the email (everything before @)
+                String firstName = event.email().split("@")[0];
+                
                 emailService.sendWelcomeEmail(
                         event.email(),
-                        event.firstName()
+                        firstName
                 );
-
-            }catch(Exception e){
-                log.error("Error processing customer created event", e);
+                
+                log.info("Successfully sent welcome email to: {}", event.email());
+            } catch (Exception e) {
+                log.error("Error processing customer created event for email: {}", event.email(), e);
             }
         };
     }
